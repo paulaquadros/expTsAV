@@ -52,6 +52,7 @@ export class Api {
   }
 
   private async middleware() {
+    this.server.use(express.urlencoded({ extended: false })); // formatando dados de formulários
     this.server.use(logger('completo'));
 
     this.server.use(

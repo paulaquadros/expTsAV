@@ -8,6 +8,13 @@ const index = async (req: Request, res: Response) => {
 const create = async (req: Request, res: Response) => {
   if (req.route.methods.get) {
     res.render('departamento/create');
+  } else {
+    const departamento = req.body;
+    try {
+      await Departamentos.create(departamento);
+    } catch (error) {
+      console.error(error);
+    }
   }
 };
 const read = async (req: Request, res: Response) => {};
