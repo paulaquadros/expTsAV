@@ -6,6 +6,6 @@ const router = Router();
 // Main controller
 router.get('/', mainController.index);
 router.get('/about', mainController.about);
-router.get('/ui', mainController.ui);
+router.get('/ui', mainController.ui); // elementos ui 
 
 export default router;
