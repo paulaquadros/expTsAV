@@ -1,0 +1,28 @@
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <title>Departamentos</title>
+  </head>
+  <body>
+    <div class='bs-component'>
+      <table class='table table-hover'>
+        <thead>
+          <tr>
+            <th scope='col'>Nome</th>
+            <th scope='col'>Sigla</th>
+            <th scope='col'>Opções</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each departamentos}}
+            <tr class='table-dark'>
+              <th scope='row'>{{name}}</th>
+              <td>{{sigla}}</td>
+              <td>{{opcoes}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
