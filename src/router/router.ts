@@ -9,13 +9,17 @@ router.get('/', mainController.index);
 router.get('/about', mainController.about);
 router.get('/ui', mainController.ui); // elementos ui
 
-// Depto controller
+// Departamento controller
 
 router.get('/departamento', departamentoController.index);
 router.get('/departamento/create', departamentoController.create);
 router.post('/departamento/create', departamentoController.create);
 router.get('/departamento/:id', departamentoController.read);
-router.put('/departamento/:id', departamentoController.update);
-router.delete('/departamento/:id', departamentoController.remove);
+router.get('/departamento/update/:id', departamentoController.update);
+router.post('/departamento/update/:id', departamentoController.update);
+router.post('/departamento/delete/:id', departamentoController.remove);
+
+// router.put('/departamento/:id', departamentoController.update);
+// router.delete('/departamento/:id', departamentoController.remove);
 
 export default router;
