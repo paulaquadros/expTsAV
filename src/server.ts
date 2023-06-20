@@ -8,6 +8,7 @@ import { api } from './api-info';
 import connection from './db/config';
 import { MigracaoDB, migracoes } from './db/migracoes';
 import logger from './middlewares/logger';
+import setLocals from './middlewares/setLocals';
 import { Departamentos } from './models/Departamentos';
 import { Dependentes } from './models/Dependentes';
 import { Funcionarios } from './models/Funcionarios';
@@ -54,6 +55,7 @@ export class Api {
   private async middleware() {
     this.server.use(express.urlencoded({ extended: false })); // formatando dados de formulários
     this.server.use(cookieParser()); // formatando dados de cookies
+    this.server.use(setLocals);
     this.server.use(logger('completo'));
 
     this.server.use(

@@ -27,9 +27,24 @@ const clearCookie = (req: Request, res: Response) => {
   res.send('Cookie apagado!');
 };
 
-const login = (req: Request, res: Response) => {};
+const login = (req: Request, res: Response) => {
+  if (req.route.methods.get) {
+    res.render('main/login');
+  } else {
+    const { username, senha } = req.body;
+    if (username === 'user' && senha === '12345') {
+      res.cookie('logado', true);
+      res.redirect('/');
+    } else {
+      res.render('main/login', { username, senha, senhaIncorreta: true });
+    }
+  }
+};
 
-const logout = (req: Request, res: Response) => {};
+const logout = (req: Request, res: Response) => {
+  res.clearCookie('logado');
+  res.redirect('/');
+};
 
 export default { index, about, ui, clearCookie, createCookie, login, logout };
 

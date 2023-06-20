@@ -8,11 +8,17 @@ const router = Router();
 router.get('/', mainController.index);
 router.get('/about', mainController.about);
 router.get('/ui', mainController.ui); // elementos ui
+
+// Cookies
 router.get('/create-cookie', mainController.createCookie);
-router.get('/clean-cookie', mainController.clearCookie);
+router.get('/clear-cookie', mainController.clearCookie);
+
+// Login/Logout
+router.get('/login', mainController.login);
+router.post('/login', mainController.login);
+router.get('/logout', mainController.logout);
 
 // Departamento controller
-
 router.get('/departamento', departamentoController.index);
 router.get('/departamento/create', departamentoController.create);
 router.post('/departamento/create', departamentoController.create);
