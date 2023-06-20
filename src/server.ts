@@ -1,20 +1,19 @@
-import 'reflect-metadata';
-
-import express from 'express';
-import router from './router/router';
-import { api } from './api-info';
-import { migracoes, MigracaoDB } from './db/migracoes';
-import connection from './db/config';
-import { VersaoDB } from './models/VersaoDB';
-import { Funcionarios } from './models/Funcionarios';
-import { Departamentos } from './models/Departamentos';
-import { Projetos } from './models/Projetos';
-import { Dependentes } from './models/Dependentes';
 import { error } from 'console';
+import cookieParser from 'cookie-parser';
+import express from 'express';
 import { engine } from 'express-handlebars';
 import sass from 'node-sass-middleware';
+import 'reflect-metadata';
+import { api } from './api-info';
+import connection from './db/config';
+import { MigracaoDB, migracoes } from './db/migracoes';
 import logger from './middlewares/logger';
-import cookieParser from 'cookie-parser';
+import { Departamentos } from './models/Departamentos';
+import { Dependentes } from './models/Dependentes';
+import { Funcionarios } from './models/Funcionarios';
+import { Projetos } from './models/Projetos';
+import { VersaoDB } from './models/VersaoDB';
+import router from './router/router';
 
 const models = [VersaoDB, Funcionarios, Departamentos, Projetos, Dependentes];
 
@@ -54,7 +53,7 @@ export class Api {
 
   private async middleware() {
     this.server.use(express.urlencoded({ extended: false })); // formatando dados de formulários
-    this.server.use(cookieParser());
+    this.server.use(cookieParser()); // formatando dados de cookies
     this.server.use(logger('completo'));
 
     this.server.use(

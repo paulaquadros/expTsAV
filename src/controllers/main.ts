@@ -12,6 +12,25 @@ const ui = (req: Request, res: Response) => {
   res.render('main/ui');
 };
 
-export default { index, about, ui };
+const createCookie = (req: Request, res: Response) => {
+  // função para criar um cookie
+  if (!req.cookies['nomeCookie']) {
+    res.cookie('nomeCookie', 'valorCookie'); // método cookie recebe dois parâmetros: nome e valor e cria um cookie
+    res.send('NUNCA passou por aqui');
+  } else {
+    res.send('Já passou por aqui');
+  }
+};
+
+const clearCookie = (req: Request, res: Response) => {
+  res.clearCookie('nomeCookie'); // método clearCookie recebe o nome do cookie e o apaga
+  res.send('Cookie apagado!');
+};
+
+const login = (req: Request, res: Response) => {};
+
+const logout = (req: Request, res: Response) => {};
+
+export default { index, about, ui, clearCookie, createCookie, login, logout };
 
 // commiting changes
