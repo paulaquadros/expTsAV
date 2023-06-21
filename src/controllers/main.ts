@@ -29,14 +29,21 @@ const clearCookie = (req: Request, res: Response) => {
 
 const login = (req: Request, res: Response) => {
   if (req.route.methods.get) {
-    res.render('main/login');
+    res.render('main/login', {
+      csrf: req.csrfToken(),
+    });
   } else {
     const { username, senha } = req.body;
     if (username === 'user' && senha === '12345') {
       res.cookie('logado', true);
       res.redirect('/');
     } else {
-      res.render('main/login', { username, senha, senhaIncorreta: true });
+      res.render('main/login', {
+        username,
+        senha,
+        senhaIncorreta: true,
+        csrf: req.csrfToken(),
+      });
     }
   }
 };

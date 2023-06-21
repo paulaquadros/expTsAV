@@ -1,5 +1,6 @@
 import { error } from 'console';
 import cookieParser from 'cookie-parser';
+import csurf from 'csurf';
 import express from 'express';
 import { engine } from 'express-handlebars';
 import sass from 'node-sass-middleware';
@@ -56,6 +57,7 @@ export class Api {
     this.server.use(express.urlencoded({ extended: false })); // formatando dados de formulários
     this.server.use(cookieParser()); // formatando dados de cookies
     this.server.use(setLocals);
+    this.server.use(csurf({ cookie: true }));
     this.server.use(logger('completo'));
 
     this.server.use(
