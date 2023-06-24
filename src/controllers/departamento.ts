@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import e, { Request, Response } from 'express';
 import { Departamentos } from '../models/Departamentos';
 
 const index = async (req: Request, res: Response) => {
@@ -28,8 +28,54 @@ const create = async (req: Request, res: Response) => {
     }
   }
 };
-const read = async (req: Request, res: Response) => {};
-const update = async (req: Request, res: Response) => {};
-const remove = async (req: Request, res: Response) => {};
+
+const read = async (req: Request, res: Response) => {
+  const idDepartamento = req.params.id;
+  // console.log(idDepartamento);
+
+  const departamento = await Departamentos.findByPk(idDepartamento);
+
+  if (!departamento) {
+    return res.redirect('/departamento');
+  }
+
+  res.render('departamento/index', {
+    departamentos: [departamento.toJSON()],
+    csrf: req.csrfToken(),
+  });
+};
+const update = async (req: Request, res: Response) => {
+  const idDepartamento = req.params.id;
+
+  if (req.route.methods.get) {
+    const depatamentoInfo = (
+      await Departamentos.findByPk(idDepartamento)
+    )?.toJSON();
+    res.render('departamento/update', {
+      departamento: depatamentoInfo,
+      csrf: req.csrfToken(),
+    });
+  } else {
+    const departamento = req.body;
+    try {
+      await Departamentos.update(departamento, {
+        where: { id: idDepartamento },
+      });
+      res.redirect('/departamento/index');
+    } catch (error: any) {
+      console.error(error);
+    }
+  }
+};
+
+const remove = async (req: Request, res: Response) => {
+  const idDepartamento = req.params.id;
+  try {
+    await Departamentos.destroy({ where: { id: idDepartamento } });
+    res.redirect('/departamento/index');
+  } catch (error: any) {
+    console.error(error);
+  }
+};
 
 export default { index, create, read, update, remove };

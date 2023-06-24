@@ -34,7 +34,7 @@ router.post(
   checkAuth,
   departamentoController.update,
 );
-router.post(
+router.get(
   '/departamento/delete/:id',
   checkAuth,
   departamentoController.remove,
