@@ -48,11 +48,11 @@ const update = async (req: Request, res: Response) => {
   const idDepartamento = req.params.id;
 
   if (req.route.methods.get) {
-    const depatamentoInfo = (
+    const departamentoInfo = (
       await Departamentos.findByPk(idDepartamento)
     )?.toJSON();
     res.render('departamento/update', {
-      departamento: depatamentoInfo,
+      departamento: departamentoInfo,
       csrf: req.csrfToken(),
     });
   } else {
