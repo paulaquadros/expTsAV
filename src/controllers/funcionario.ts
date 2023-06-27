@@ -3,7 +3,14 @@ import { Funcionarios } from '../models/Funcionarios';
 import { Departamentos } from '../models/Departamentos';
 
 const index = async (req: Request, res: Response) => {
-  const funcionarios = await Funcionarios.findAll();
+  const funcionarios = await Funcionarios.findAll({
+    include: [
+      {
+        model: Departamentos,
+        as: 'departamento',
+      },
+    ],
+  });
 
   res.render('funcionario/index', {
     funcionarios: funcionarios.map((funcionario) => funcionario.toJSON()),
@@ -13,7 +20,7 @@ const index = async (req: Request, res: Response) => {
 const create = async (req: Request, res: Response) => {
   const departamentos = await Departamentos.findAll();
 
-  console.log(departamentos);
+  // console.log(departamentos);
 
   if (req.route.methods.get) {
     res.render('funcionario/create', {
@@ -26,7 +33,6 @@ const create = async (req: Request, res: Response) => {
       await Funcionarios.create(funcionario);
       res.redirect('/funcionario');
     } catch (error: any) {
-      console.log(departamentos);
       console.error(error);
       res.render('funcionario/create', {
         funcionario,

@@ -4,6 +4,7 @@
   </div>
   <div class='bs-component col-6'>
     <form action='/funcionario/create' method='post'>
+      <span>{{funcionario}}</span>
       <div class='form-group'>
         <label class='col-form-label mt-4' for='name'>Nome</label>
         <input
@@ -70,7 +71,21 @@
         {{showErrors errors 'idade'}}
       </div>
 
-      <div class='dropdown mt-4'>
+      <div class='form-group'>
+        <label class='col-form-label mt-4' for='departamento'>ID do Departamento</label>
+        <input
+          class='form-control'
+          type='text'
+          id='departamento'
+          name='departamentoId'
+          value='{{funcionario.departamentoId}}'
+        />
+      </div>
+      <div class='invalid-feedback' style='display: block'>
+        {{showErrors errors 'departamento'}}
+      </div>
+
+      {{!-- <div class='dropdown mt-4'>
         <button
           class='btn btn-secondary dropdown-toggle'
           type='button'
@@ -81,10 +96,15 @@
         </button>
         <ul class='dropdown-menu'>
           {{#each departamentos}}
-            <li><a class='dropdown-item' href='#'>{{name}}</a></li>
+            <li><a
+                class='dropdown-item'
+                href='#'
+                name='departamento'
+                value='{{id}}'
+              >{{name}}</a></li>
           {{/each}}
         </ul>
-      </div>
+      </div> --}}
 
       <div class='form-group mt-4'>
         <input type='hidden' name='_csrf' value='{{csrf}}' />
