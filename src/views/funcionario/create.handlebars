@@ -18,18 +18,74 @@
         {{showErrors errors 'name'}}
       </div>
       <div class='form-group'>
-        <label class='col-form-label mt-2' for='sigla'>Sigla</label>
+        <label class='col-form-label mt-2' for='endereco'>Endereço</label>
         <input
           class='form-control'
           type='text'
-          id='sigla'
-          name='sigla'
-          value='{{departamento.sigla}}'
+          id='endereco'
+          name='endereco'
+          value='{{funcionario.endereco}}'
         />
       </div>
       <div class='invalid-feedback' style='display: block'>
-        {{showErrors errors 'sigla'}}
+        {{showErrors errors 'endereco'}}
       </div>
+      <div class='form-group'>
+        <label class='col-form-label mt-4' for='fone'>Telefone</label>
+        <input
+          class='form-control'
+          type='text'
+          id='fone'
+          name='fone'
+          value='{{funcionario.fone}}'
+        />
+      </div>
+      <div class='invalid-feedback' style='display: block'>
+        {{showErrors errors 'fone'}}
+      </div>
+      <div class='form-group'>
+        <label class='col-form-label mt-4' for='email'>E-mail</label>
+        <input
+          class='form-control'
+          type='text'
+          id='email'
+          name='email'
+          value='{{funcionario.email}}'
+        />
+      </div>
+      <div class='invalid-feedback' style='display: block'>
+        {{showErrors errors 'email'}}
+      </div>
+      <div class='form-group'>
+        <label class='col-form-label mt-4' for='idade'>Idade</label>
+        <input
+          class='form-control'
+          type='text'
+          id='idade'
+          name='idade'
+          value='{{funcionario.idade}}'
+        />
+      </div>
+      <div class='invalid-feedback' style='display: block'>
+        {{showErrors errors 'idade'}}
+      </div>
+
+      <div class='dropdown mt-4'>
+        <button
+          class='btn btn-secondary dropdown-toggle'
+          type='button'
+          data-bs-toggle='dropdown'
+          aria-expanded='false'
+        >
+          Departamento
+        </button>
+        <ul class='dropdown-menu'>
+          {{#each departamentos}}
+            <li><a class='dropdown-item' href='#'>{{name}}</a></li>
+          {{/each}}
+        </ul>
+      </div>
+
       <div class='form-group mt-4'>
         <input type='hidden' name='_csrf' value='{{csrf}}' />
         <button type='submit' class='btn btn-primary'>Adicionar</button>

@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import mainController from '../controllers/main';
 import departamentoController from '../controllers/departamento';
+import funcionarioController from '../controllers/funcionario';
 import checkAuth from '../middlewares/checkAuth';
 
 const router = Router();
@@ -42,5 +43,14 @@ router.get(
 
 // router.put('/departamento/:id', departamentoController.update);
 // router.delete('/departamento/:id', departamentoController.remove);
+
+// Funcionario controller
+router.get('/funcionario', checkAuth, funcionarioController.index);
+router.get('/funcionario/create', checkAuth, funcionarioController.create);
+router.post('/funcionario/create', checkAuth, funcionarioController.create);
+router.get('/funcionario/:id', checkAuth, funcionarioController.read);
+router.get('/funcionario/update/:id', checkAuth, funcionarioController.update);
+router.post('/funcionario/update/:id', checkAuth, funcionarioController.update);
+router.get('/funcionario/delete/:id', checkAuth, funcionarioController.remove);
 
 export default router;
