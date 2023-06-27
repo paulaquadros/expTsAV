@@ -17,4 +17,22 @@ migracoes.set(1, {
   ],
 });
 
+migracoes.set(2, {
+  consultas: [
+    {
+      model: 'Funcionarios',
+      query: `ALTER TABLE Funcionarios DROP endereco;`,
+    },
+  ],
+});
+
+migracoes.set(3, {
+  consultas: [
+    {
+      model: 'Funcionarios',
+      query: `ALTER TABLE Funcionarios ADD senha CHAR(100) AFTER name;`,
+    },
+  ],
+});
+
 export { migracoes };

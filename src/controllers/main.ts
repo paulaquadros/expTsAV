@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { Departamentos } from '../models/Departamentos';
 
 const index = (req: Request, res: Response) => {
   res.render('main/index');
@@ -29,9 +30,11 @@ const clearCookie = (req: Request, res: Response) => {
 };
 
 // Sign Up
-const signUp = (req: Request, res: Response) => {
+const signUp = async (req: Request, res: Response) => {
+  const departamentos = await Departamentos.findAll();
   if (req.route.methods.get) {
     res.render('main/signup', {
+      departamentos: departamentos.map((departamento) => departamento.toJSON()),
       csrf: req.csrfToken(),
     });
   }
