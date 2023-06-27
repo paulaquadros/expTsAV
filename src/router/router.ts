@@ -20,6 +20,10 @@ router.get('/login', mainController.login);
 router.post('/login', mainController.login);
 router.get('/logout', mainController.logout);
 
+// Sign Up
+router.get('/signup', mainController.signUp);
+router.post('/signup', mainController.signUp);
+
 // Departamento controller
 router.get('/departamento', checkAuth, departamentoController.index);
 router.get('/departamento/create', checkAuth, departamentoController.create);

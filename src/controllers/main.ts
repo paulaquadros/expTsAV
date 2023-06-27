@@ -27,6 +27,8 @@ const clearCookie = (req: Request, res: Response) => {
   res.send('Cookie apagado!');
 };
 
+const signUp = (req: Request, res: Response) => {};
+
 const login = (req: Request, res: Response) => {
   if (req.route.methods.get) {
     res.render('main/login', {
@@ -48,11 +50,22 @@ const login = (req: Request, res: Response) => {
   }
 };
 
+// Log Out
+
 const logout = (req: Request, res: Response) => {
   res.clearCookie('logado');
   res.redirect('/');
 };
 
-export default { index, about, ui, clearCookie, createCookie, login, logout };
+export default {
+  index,
+  about,
+  ui,
+  clearCookie,
+  createCookie,
+  signUp,
+  login,
+  logout,
+};
 
 // commiting changes
