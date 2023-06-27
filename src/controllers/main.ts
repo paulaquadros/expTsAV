@@ -12,6 +12,7 @@ const ui = (req: Request, res: Response) => {
   res.render('main/ui');
 };
 
+// Cookies methods
 const createCookie = (req: Request, res: Response) => {
   // função para criar um cookie
   if (!req.cookies['nomeCookie']) {
@@ -27,8 +28,16 @@ const clearCookie = (req: Request, res: Response) => {
   res.send('Cookie apagado!');
 };
 
-const signUp = (req: Request, res: Response) => {};
+// Sign Up
+const signUp = (req: Request, res: Response) => {
+  if (req.route.methods.get) {
+    res.render('main/signup', {
+      csrf: req.csrfToken(),
+    });
+  }
+};
 
+// Log in
 const login = (req: Request, res: Response) => {
   if (req.route.methods.get) {
     res.render('main/login', {
@@ -51,7 +60,6 @@ const login = (req: Request, res: Response) => {
 };
 
 // Log Out
-
 const logout = (req: Request, res: Response) => {
   res.clearCookie('logado');
   res.redirect('/');
