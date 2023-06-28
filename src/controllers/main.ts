@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { Departamentos } from '../models/Departamentos';
+import { Funcionarios } from '../models/Funcionarios';
 
 const index = (req: Request, res: Response) => {
   res.render('main/index');
@@ -37,6 +38,21 @@ const signUp = async (req: Request, res: Response) => {
       departamentos: departamentos.map((departamento) => departamento.toJSON()),
       csrf: req.csrfToken(),
     });
+  } else {
+    const funcionario = req.body;
+    try {
+      await Funcionarios.create(funcionario);
+      res.redirect('/');
+    } catch (e: any) {
+      res.render('main/signup', {
+        funcionario,
+        departamentos: departamentos.map((departamento) =>
+          departamento.toJSON(),
+        ),
+        erros: e.errors,
+        csrf: req.csrfToken(),
+      });
+    }
   }
 };
 

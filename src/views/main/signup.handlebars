@@ -3,7 +3,7 @@
     <h1 class='page-header'>Criar conta</h1>
   </div>
   <div class='bs-component col-6'>
-    <form action='/signup' method='post'>
+    <form id='signup-form' action='/signup' method='post'>
 
       <div class='form-group'>
         <label class='col-form-label mt-4' for='name'>Nome</label>
@@ -44,7 +44,7 @@
       </div>
 
       <div class='form-group'>
-        <label class='col-form-label mt-4' for='email'>Senha</label>
+        <label class='col-form-label mt-4' for='senha'>Senha</label>
         <input
           class='form-control'
           type='password'
@@ -58,7 +58,8 @@
       </div>
 
       <div class='form-group'>
-        <label class='col-form-label mt-4' for='email'>Confirma sua senha</label>
+        <label class='col-form-label mt-4' for='confirm-senha'>Confirme sua
+          senha</label>
         <input
           class='form-control'
           type='password'
@@ -66,9 +67,12 @@
           name='confirm-senha'
           value=''
         />
-      </div>
-      <div class='invalid-feedback' style='display: block'>
-        {{showErrors errors 'email'}}
+        <div
+          id='confirm-senha-error'
+          class='invalid-feedback'
+          style='display: block'
+        >
+        </div>
       </div>
 
       <div class='form-group mt-4'>
